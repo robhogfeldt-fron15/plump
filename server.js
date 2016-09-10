@@ -1,4 +1,3 @@
-// server.js
 
     // set up ========================
     var express  = require('express');
@@ -8,8 +7,15 @@
     var bodyParser = require('body-parser');
     var methodOverride = require('method-override');
 
-    // configuration =================
+    var Player = require('./models/player');
+    var Game = require('./models/game');
 
+
+    // routes
+    require('./routes/server.routes.player')(app);
+    require('./routes/server.routes.games')(app);
+
+    // configuration
     mongoose.connect('mongodb://localhost:27017/my_database_name');
 
     app.use(express.static(__dirname + '/public'));

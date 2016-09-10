@@ -1,0 +1,11 @@
+{
+    "name": "Plump",
+    "version": "1.0.0",
+    "dependencies": {
+        "bootstrap": "*",
+        "font-awesome": "*",
+        "animate.css": "*",
+        "angular": "*",
+        "angular-route": "*"   
+    }
+}
