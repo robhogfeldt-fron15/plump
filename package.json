@@ -1,14 +1,15 @@
 {
-  "name"         : "plump",
-  "version"      : "0.0.0",
-  "description"  : "Keep score in plump",
-  "main"         : "server.js",
-  "author"       : "Robert",
-  "dependencies" : {
-    "body-parser"    : "*",
-    "express"        : "*",
+  "name": "plump",
+  "version": "0.0.0",
+  "description": "Keep score in plump",
+  "main": "server.js",
+  "author": "Robert",
+  "dependencies": {
+    "angular-resource": "^1.5.8",
+    "body-parser": "*",
+    "express": "*",
     "method-override": "*",
-    "mongoose"       : "*",
-    "morgan"         : "*"
+    "mongoose": "*",
+    "morgan": "*"
   }
 }

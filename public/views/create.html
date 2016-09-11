@@ -1,0 +1,17 @@
+<div class="jumbotron text-center" data-ng-controller="GameCtrl as vm">
+    <div class="row">
+  
+        <ul class="nav nav-pills">
+            <li class="active" data-ng-repeat="player in vm.players">
+                <button data-toggle="tab" ng-class="{'btn-primary' : player.isActive }" ng-click="vm.addPlayer(player)">{{player.name}}</button>
+            </li>
+        </ul>
+
+        <ul class="nav nav-pills">
+            <li class="active" data-ng-repeat="card in vm.cards">
+                <button data-toggle="tab" ng-class="{'btn-primary' : card.isActive }" ng-click="vm.nrOfCards(card)">{{ card.nr }}</button>
+            </li>
+        </ul>
+
+    </div>
+</div>

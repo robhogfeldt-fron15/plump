@@ -15,8 +15,9 @@ var Player = require('../models/player');
     });
 
     app.post('/api/players', function(req, res) {
+
         Player.create({
-            name : req.body.text,
+            name : req.body.name,
         }, function(err, player) {
             if (err)
                 res.send(err);
@@ -24,6 +25,8 @@ var Player = require('../models/player');
             Player.find(function(err, player) {
                 if (err)
                     res.send(err)
+                    console.log(player);
+                    console.log(typeof player);
                 res.json(player);
             });
         });

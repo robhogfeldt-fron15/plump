@@ -1,5 +1,21 @@
-angular.module('MainCtrl', []).controller('MainController', function($scope) {
+(function () {
+    'use strict';
 
-    $scope.tagline = 'To the moon and back!';
+    angular
+        .module('plumpApp')
+        .controller('MainCtrl', MainCtrl);
 
-});
+    MainCtrl.$inject = ['playerService'];
+
+    function MainCtrl(playerService) {
+
+        var vm = this;
+        vm.players = playerService.query();
+
+  
+
+        console.log(vm.players);
+
+
+    }
+})();

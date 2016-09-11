@@ -1,19 +1,15 @@
+(function() {
+    'use strict';
+    angular
+        .module('plumpApp')
+        .factory('playerService', playerService);
+    playerService.$inject = ['$resource'];
 
-angular.module('PlayerService', []).factory('Player', ['$http', function($http) {
-
-    return {
-
-        get : function() {
-            return $http.get('/api/players');
-        },
-
-        create : function(player) {
-            return $http.post('/api/players', player);
-        },
-
-        delete : function(id) {
-            return $http.delete('/api/player/' + id);
-        }
+    function playerService($resource) {
+      return $resource("/api/players/:id", {id:'@_id'}, {
+        query: { method: "GET", isArray: true },
+        save: { method: "POST", isArray: true },
+        delete: { method: "DELETE", isArray: true }
+  });
     }
-
-}]);
+})();
