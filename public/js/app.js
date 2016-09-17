@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('plumpApp', ['ngAnimate', 'ngRoute', 'ngResource'])
+        .module('plumpApp', ['ngAnimate', 'ngRoute', 'ngResource', 'ui.bootstrap'])
         .config(routeConfig);
 
     routeConfig.$inject = ['$routeProvider'];

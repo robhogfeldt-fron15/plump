@@ -1,17 +1,119 @@
 <div class="jumbotron text-center" data-ng-controller="GameCtrl as vm">
     <div class="row">
-  
-        <ul class="nav nav-pills">
-            <li class="active" data-ng-repeat="player in vm.players">
-                <button data-toggle="tab" ng-class="{'btn-primary' : player.isActive }" ng-click="vm.addPlayer(player)">{{player.name}}</button>
-            </li>
-        </ul>
+  <div class="container">
+  <form name="outerForm"
+        class="tab-form-demo"
+        style="background-color: white; margin-top: 10px;">
+    <div class="col-md-12">
+    <uib-tabset active="activeForm">
+      <uib-tab index="0" heading="Players">
+        <div class="col-sm-12">
+        <ul style="list-style-type: none">
+          <li ng-repeat="player in vm.players"
+              style="display: inline; float:left"
+              class="col-sm-4 col-xs-6">
+            <div class="panel panel-default"
+                 style="margin-top: 10px;"
+                 ng-click="vm.addPlayer(player)"
+                 ng-class="{'card-selected' : player.isActive }">
+                <div class="panel-thumbnail">
+                  <img src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-128.png" class="img-responsive">
+                </div>
+                <div class="panel-body">
+                  <p class="lead">{{ player.name }}</p>
+                </div>
+            </div>
+         </li>
+      </ul>
+      </div>
+      </uib-tab>
+      <uib-tab index="1" heading="Cards">
+        <div class="col-sm-12">
+        <ul style="list-style-type: none">
+          <li ng-repeat="card in vm.cards"
+              style="display: inline; float:left"
+              class="col-sm-2 col-xs-3">
+              {{ vm.nrOfCardsMax }}
+            <div class="panel panel-default"
+                 style="margin-top: 10px;"
+                 ng-click="vm.nrOfCards(card, $index)"
+                 ng-class="{'card-selected' : card.isActive }">
+                <div class="panel-thumbnail">
+                </div>
+                <div class="panel-body">
+                  <p class="lead">{{ card.nr }}</p>
+                </div>
+          </div>
+         </li>
+      </ul>
+      </div>
+      </uib-tab>
+      <uib-tab index="2" heading="Stick">
+        <div class="col-sm-12">
+        <ul style="list-style-type: none">
+          <li ng-repeat="player in vm.newGame.activePlayers"
+              style="display: inline; float:left"
+              class="col-sm-4 col-xs-6">
+            <div class="panel panel-default"
+                 style="margin-top: 10px;">
+                <div class="panel-thumbnail">
+                  <img src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-128.png" class="img-responsive">
+                </div>
+                <div class="panel-body">
 
-        <ul class="nav nav-pills">
-            <li class="active" data-ng-repeat="card in vm.cards">
-                <button data-toggle="tab" ng-class="{'btn-primary' : card.isActive }" ng-click="vm.nrOfCards(card)">{{ card.nr }}</button>
-            </li>
-        </ul>
+                  <p class="lead">{{ player.name }}</p>
+                     <input type="number"
+                            name="input"
+                            ng-model="player.sticks"
+                            min="0"
+                            max="{{vm.nrOfCardsMax}}"
+                            required
+                            style="width: 100%">
 
-    </div>
+                </div>
+            </div>
+         </li>
+      </ul>
+      <div class="row" style="clear:both; float:none">
+          <button class="btn btn-success" data-ng-click="vm.startNewGame(vm.newGame)">Rock n Roll!</button>
+      </div>
+
+      </div>
+      </uib-tab>
+      <uib-tab index="3" heading="Result">
+        <div class="col-sm-12">
+        <ul style="list-style-type: none">
+          <li ng-repeat="player in vm.currentGame.activePlayers"
+              style="display: inline; float:left"
+              class="col-sm-4 col-xs-6">
+            <div class="panel panel-default"
+                 style="margin-top: 10px;">
+
+                <div class="panel-body">
+
+                  <p class="lead">{{ player.name }}</p>
+
+                </div>
+            </div>
+         </li>
+      </ul>
+    
+
+      </div>
+      </uib-tab>
+    </uib-tabset>
+  </div>
+  </form>
 </div>
+<pre>{{   vm.currentGame | json }}</pre>
+</div>
+
+<style>
+.card-selected {
+  background-color: green
+}
+
+ul {
+  padding-left: 0;
+}
+</style>

@@ -12,9 +12,7 @@
         var vm = this;
         vm.players = playerService.query();
 
-  
 
-        console.log(vm.players);
 
 
     }

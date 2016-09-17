@@ -11,5 +11,8 @@
     "method-override": "*",
     "mongoose": "*",
     "morgan": "*"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1"
   }
 }

@@ -1,5 +1,6 @@
 
 var Game = require('../models/game');
+var Player = require('../models/player');
 
     module.exports = function(app) {
 
@@ -15,20 +16,23 @@ var Game = require('../models/game');
     });
 
     app.post('/api/games', function(req, res) {
+
         Game.create({
-            players : req.body.players,
-            nrOfCards: req.body.nrOfCards
+            playersSticks : req.body.activePlayers,
+            nrOfCards: req.body.nrOfCards,
         }, function(err, game) {
-            if (err)
-                res.send(err);
-
-            Player.find(function(err, game) {
-                if (err)
-                    res.send(err)
-                res.json(game);
-            });
+            if (err) {
+              res.send(err);
+            } else {
+              Game.findOne(game)
+                  .populate('players.player')
+                  .exec(function (err, newgame) {
+                    if (err) return handleError(err);
+                    console.log(newgame);
+                      res.json(newgame);
+                  });
+            }
         });
-
     });
 
 

@@ -7,7 +7,13 @@ var gameSchema = new Schema({
 
   created_at: Date,
   nrOfCards: String,
-  games: [Player],
+  playersSticks: [{
+          sticks: String,
+          player: {
+              type: mongoose.Schema.Types.ObjectId,
+              ref: 'Player'
+          }
+      }],
 
 });
 

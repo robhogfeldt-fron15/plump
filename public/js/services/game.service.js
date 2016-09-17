@@ -4,11 +4,12 @@
         .module('plumpApp')
         .factory('gameService', gameService);
     gameService.$inject = ['$resource'];
+
     function gameService($resource) {
-        var data = $resource('api/game');
-        update: {
-            method: 'PUT'
-        };
-        return data;
+      return $resource("/api/games/:id", {id:'@_id'}, {
+        query: { method: "GET", isArray: true },
+        save: { method: "POST" },
+        delete: { method: "DELETE", isArray: true }
+  });
     }
 })();
