@@ -25,12 +25,16 @@ var Player = require('../models/player');
               res.send(err);
             } else {
               Game.findOne(game)
-                  .populate('players.player')
+                  .populate({
+                    path: 'playersSticks',
+                    populate: {path: 'player'}
+                  })
                   .exec(function (err, newgame) {
                     if (err) return handleError(err);
                     console.log(newgame);
                       res.json(newgame);
                   });
+              res.json(game)
             }
         });
     });

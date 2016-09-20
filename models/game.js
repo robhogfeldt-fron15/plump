@@ -10,7 +10,7 @@ var gameSchema = new Schema({
   playersSticks: [{
           sticks: String,
           player: {
-              type: mongoose.Schema.Types.ObjectId,
+              type: Schema.Types.ObjectId,
               ref: 'Player'
           }
       }],
